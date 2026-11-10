@@ -16,10 +16,3 @@
 | [`qa-analysis.html`](./qa-analysis.html) | **Q&A 심층 검증 & 2021–2025 OOS** | 17개 대안 설정 마스터 비교표, $\delta=8.84$ 편향 규명 및 시장 내재 $\delta$ 추정, 40개 조합 다중검정 보정(Bonferroni, Holm, BH, White Reality Check), 연간 재선정 실험, 2021–2025 미관측 OOS 백테스트, **21개 동료 질문 전수 아코디언** |
 | [`meetings.html`](./meetings.html) | **회의록 & 프로젝트 히스토리** | 교수님 1·2·3차 지도 면담에 따른 5대 설계 피벗 요약, 9월 7일~11월 7일 총 9차례 회의록 아카이브, 타 팀(Team 1,3,4,5,6,7,8) 동료 평가 요약 |
 | [`code-papers.html`](./code-papers.html) | **코드 아키텍처 & 참고문헌** | 국·영문 최종 보고서 및 Q&A 답안지 PDF 다운로드 센터, 전체 코드베이스 디렉토리 구조 및 CLI 재현 명령어, 29편의 학술 참고문헌 라이브러리 |
-
----
-
-## 🚀 GitHub Pages 배포 방법
-
-1. 본 `pagedeploy` 폴더 내부의 모든 파일(`index.html`, `methodology.html`, `results.html`, `qa-analysis.html`, `meetings.html`, `code-papers.html`, `.nojekyll`, `assets/`)을 `<username>.github.io` 리포지토리 루트(또는 프로젝트 리포지토리의 `main` 브랜치)에 업로드(Push)합니다.
-2. 리포지토리 **Settings → Pages → Build and deployment**에서 Branch를 `main` / `/(root)`로 설정하면 즉시 웹사이트가 활성화됩니다.
