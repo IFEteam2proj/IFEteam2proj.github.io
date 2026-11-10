@@ -73,11 +73,11 @@
         </div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">10년 누적 순수익률 ($100 투자 시)</div>
+        <div class="kpi-label">10년 누적 순수익률 (<span class="currency">$</span>100 투자 시)</div>
         <div class="kpi-value accent">+503.1%</div>
         <div class="kpi-sub">
-          <span><strong>$603.09</strong> 도달</span>
-          <span>(S&amp;P 500 $367.00 · EW20 $340.11)</span>
+          <span><strong><span class="currency">$</span>603.09</strong> 도달</span>
+          <span>(S&amp;P 500 <span class="currency">$</span>367.00 · EW20 <span class="currency">$</span>340.11)</span>
         </div>
       </div>
       <div class="kpi-card">
@@ -122,8 +122,8 @@
           <p class="section-desc">2000–2010년 FF3 알파 스크리닝으로 선정된 20개 종목에 대해 매월 워크포워드 ML 예측과 블랙-리터만 최적화를 수행한 결과입니다.</p>
         </div>
         <div class="pill-group">
-          <button class="pill-btn scale-toggle-btn active" data-scale="linear">선형 스케일 ($)</button>
-          <button class="pill-btn scale-toggle-btn" data-scale="logarithmic">로그 스케일 (Log $)</button>
+          <button class="pill-btn scale-toggle-btn active" data-scale="linear">선형 스케일 (<span class="currency">$</span>)</button>
+          <button class="pill-btn scale-toggle-btn" data-scale="logarithmic">로그 스케일 (Log <span class="currency">$</span>)</button>
         </div>
       </div>
 
@@ -131,7 +131,7 @@
         <div class="card">
           <div class="card-header">
             <div>
-              <div class="card-title">누적 포트폴리오 가치 추이 ($100 기준, 2011–2020)</div>
+              <div class="card-title">누적 포트폴리오 가치 추이 (<span class="currency">$</span>100 기준, 2011–2020)</div>
               <div class="card-subtitle">Main (XGBoost × M4, Net/Gross) vs S&amp;P 500 TR vs Equal-Weight 20</div>
             </div>
             <span class="badge badge-blue">Interactive Chart.js</span>
@@ -369,7 +369,7 @@
             40개(5×8) 조합의 CAGR에 대한 이원 분산분석(2-way ANOVA) 결과, <strong>뷰 구성 방식($P$)이 전체 변동의 85.3%</strong>를 설명한 반면 ML 모델 종류는 4.5%에 그쳤습니다.
           </p>
           <ul style="font-size: 0.88rem; color: var(--text-secondary); padding-left: 1.15rem;">
-            <li><strong>M4 ($P=I_N$):</strong> 20개 종목 각각의 기대수익률을 독립적인 20개 절대 뷰로 전달하여 예측 신호의 방향과 크기를 온전히 보존 (XGBoost 19.68%, Elastic Net 19.46%, RF 18.89%).</li>
+            <li><strong>M4 ($P=I_N$):</strong> 20개 종목 각각의 기대수익률을 독립적인 20개 절대 뷰로 전달하여 예측 신호의 방향과 크기를 온전히 보존 (XGBoost 19.68%, Elastic Net 19.46%, RF 18.85%).</li>
             <li><strong>M1~M3, M5 (단일/소수 롱숏 상대 뷰):</strong> 20차원 예측 벡터를 1~2개의 스칼라 스프레드로 압축하면서 개별 종목 알파 정보가 소실되어 균형 사전분포(~13.8%)로 수렴.</li>
           </ul>
         </div>

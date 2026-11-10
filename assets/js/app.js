@@ -21,7 +21,7 @@
         document.documentElement.setAttribute("data-theme", next);
         localStorage.setItem("ife_theme", next);
         themeBtn.textContent = next === "dark" ? "☀️" : "🌙";
-        if (window. renderAllCharts) window.renderAllCharts();
+        if (window.renderAllCharts) window.renderAllCharts();
       });
     }
 
@@ -104,7 +104,7 @@
   }
 
   // --------------------------------------------------------------------------
-  // 3. Chart Renderers (Home & Results Pages)
+  // 3. Chart Renderers (Home, Results, QA Pages)
   // --------------------------------------------------------------------------
   function renderWealthAndDrawdownCharts() {
     const data = window.PROJECT_CSV_DATA;
@@ -112,19 +112,19 @@
     const series = data.monthlySeries;
     const colors = getChartColors();
 
-    const labels = ["2010-12", ...series.map((d) => d.date.slice(0, 7))];
+    const labels = ["2010-12", ...series.map((d) => String(d.date).slice(0, 7))];
     let wMain = 100, wGross = 100, wSP = 100, wEW = 100, wEnet = 100, wRF = 100;
     const cMain = [100], cGross = [100], cSP = [100], cEW = [100], cEnet = [100], cRF = [100];
     let pMain = 100, pSP = 100, pEW = 100;
     const ddMain = [0], ddSP = [0], ddEW = [0];
 
     series.forEach((m) => {
-      wMain *= 1 + m.main_net / 100;
-      wGross *= 1 + m.main_gross / 100;
-      wSP *= 1 + m.sp500 / 100;
-      wEW *= 1 + m.ew20 / 100;
-      wEnet *= 1 + m.enet_net / 100;
-      wRF *= 1 + m.rf_net / 100;
+      wMain *= 1 + (parseFloat(m.main_net) || 0) / 100;
+      wGross *= 1 + (parseFloat(m.main_gross) || 0) / 100;
+      wSP *= 1 + (parseFloat(m.sp500) || 0) / 100;
+      wEW *= 1 + (parseFloat(m.ew20) || 0) / 100;
+      wEnet *= 1 + (parseFloat(m.enet_net) || 0) / 100;
+      wRF *= 1 + (parseFloat(m.rf_net) || 0) / 100;
 
       cMain.push(+wMain.toFixed(2));
       cGross.push(+wGross.toFixed(2));
@@ -280,7 +280,7 @@
 
     // Annual Returns Bar Chart
     if (data.annualReturns && document.getElementById("annualBarChart")) {
-      const years = data.annualReturns.map((r) => r.H1);
+      const years = data.annualReturns.map((r) => r.year || r.H1);
       createOrUpdateChart("annualBarChart", {
         type: "bar",
         data: {
@@ -288,19 +288,19 @@
           datasets: [
             {
               label: "Main (XGBoost × M4, Net)",
-              data: data.annualReturns.map((r) => parseFloat(r["Main (Net)"])),
+              data: data.annualReturns.map((r) => parseFloat(r["XGB_M4 (메인, 비용 후)"] ?? r["Main (Net)"])),
               backgroundColor: colors.main,
               borderRadius: 4
             },
             {
               label: "S&P 500 TR",
-              data: data.annualReturns.map((r) => parseFloat(r["S&P 500"])),
+              data: data.annualReturns.map((r) => parseFloat(r["S&P500 TR"] ?? r["S&P 500"])),
               backgroundColor: colors.sp500,
               borderRadius: 4
             },
             {
               label: "Equal-Weight 20 (Net)",
-              data: data.annualReturns.map((r) => parseFloat(r["Equal-Weight (Net)"])),
+              data: data.annualReturns.map((r) => parseFloat(r["동일가중 20"] ?? r["Equal-Weight (Net)"])),
               backgroundColor: colors.ew20,
               borderRadius: 4
             }
@@ -327,11 +327,11 @@
       createOrUpdateChart("turnoverChart", {
         type: "bar",
         data: {
-          labels: series.map((d) => d.date.slice(0, 7)),
+          labels: series.map((d) => String(d.date).slice(0, 7)),
           datasets: [
             {
               label: "월별 턴오버 (One-Way Turnover %, 평균 39.20%)",
-              data: series.map((d) => d.turnover),
+              data: series.map((d) => parseFloat(d.turnover) || 0),
               backgroundColor: colors.main,
               borderRadius: 2
             }
@@ -354,13 +354,26 @@
     // Dynamic Portfolio Weights Chart (Top 6 Holdings + Others)
     if (data.weightsMain && document.getElementById("weightsAreaChart")) {
       const wRows = data.weightsMain;
-      const wDates = wRows.map((r) => r.H1.slice(0, 7));
-      const topTickers = ["AAPL", "CNI", "UGI", "CMI", "ANSS", "SRCL"];
+      const wDates = wRows.map((r) => String(r.decision_date || r.H1).slice(0, 7));
+      const topHoldings = [
+        { key: "AAPL(14593)", ticker: "AAPL", label: "AAPL (평균 17.89%)" },
+        { key: "CNI(84181)", ticker: "CNI", label: "CNI (평균 8.31%)" },
+        { key: "UGI(17929)", ticker: "UGI", label: "UGI (평균 8.29%)" },
+        { key: "CMI(41080)", ticker: "CMI", label: "CMI (평균 7.28%)" },
+        { key: "ANSS(83621)", ticker: "ANSS", label: "ANSS (평균 7.03%)" },
+        { key: "SRCL(83906)", ticker: "SRCL", label: "SRCL (평균 7.00%)" }
+      ];
       const palette = ["#1d4ed8", "#0284c7", "#059669", "#d97706", "#7c3aed", "#db2777", "#94a3b8"];
 
-      const datasets = topTickers.map((t, idx) => ({
-        label: t,
-        data: wRows.map((r) => +(parseFloat(r[t] || 0) * 100).toFixed(2)),
+      const getVal = (row, item) => {
+        const raw = parseFloat(row[item.key] ?? row[item.ticker] ?? 0);
+        if (isNaN(raw)) return 0;
+        return raw <= 1.05 ? raw * 100 : raw;
+      };
+
+      const datasets = topHoldings.map((item, idx) => ({
+        label: item.label,
+        data: wRows.map((r) => +getVal(r, item).toFixed(2)),
         backgroundColor: palette[idx] + "cc",
         borderColor: palette[idx],
         borderWidth: 1,
@@ -369,11 +382,11 @@
       }));
 
       datasets.push({
-        label: "Other 14 Stocks",
+        label: "Other 14 Stocks (기타 14개 종목 합산)",
         data: wRows.map((r) => {
           let sumTop = 0;
-          topTickers.forEach((t) => { sumTop += parseFloat(r[t] || 0); });
-          return +Math.max(0, (1 - sumTop) * 100).toFixed(2);
+          topHoldings.forEach((item) => { sumTop += getVal(r, item); });
+          return +Math.max(0, 100 - sumTop).toFixed(2);
         }),
         backgroundColor: palette[6] + "88",
         borderColor: palette[6],
@@ -391,7 +404,7 @@
           interaction: { mode: "index", intersect: false },
           plugins: {
             legend: { labels: { color: colors.text, font: { size: 11, weight: "600" } } },
-            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%` } }
+            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%` } }
           },
           scales: {
             x: { ticks: { color: colors.text, maxTicksLimit: 12 }, grid: { color: colors.grid } },
@@ -476,38 +489,53 @@
       });
     });
 
-    // A. FF3 Top 20 Table (Methodology Page)
+    // A. FF3 Top 20 / All 131 Table (Methodology Page)
     const ff3Body = document.getElementById("ff3Top20Body");
     if (ff3Body && data.ff3Top20) {
-      const holdingsMap = {};
+      const holdingsByPermno = {};
       if (data.holdingsSummary) {
-        data.holdingsSummary.forEach((h) => { holdingsMap[h.H1] = h; });
+        data.holdingsSummary.forEach((h) => {
+          if (h.permno) holdingsByPermno[String(h.permno)] = h;
+          if (h.ticker) holdingsByPermno[h.ticker] = h;
+          holdingsByPermno[h.H1] = h;
+        });
       }
 
-      const renderFF3 = (filterText = "") => {
-        const q = filterText.trim().toLowerCase();
-        const rows = data.ff3Top20.filter((r) =>
+      let currentScope = "top20";
+      let currentQuery = "";
+
+      const renderFF3 = () => {
+        const q = currentQuery.trim().toLowerCase();
+        const sourceList = (currentScope === "all131" && data.ff3All131) ? data.ff3All131 : data.ff3Top20;
+        const rows = sourceList.filter((r) =>
           !q ||
-          r.TICKER.toLowerCase().includes(q) ||
-          r.COMNAM.toLowerCase().includes(q) ||
-          r.PERMNO.includes(q)
+          String(r.TICKER).toLowerCase().includes(q) ||
+          String(r.COMNAM).toLowerCase().includes(q) ||
+          String(r.PERMNO).includes(q)
         );
         ff3Body.innerHTML = rows.map((r, idx) => {
-          const h = holdingsMap[r.TICKER] || holdingsMap[r.TICKER === "HANS" ? "MNST" : r.TICKER === "POT" ? "NTR" : r.TICKER] || {};
-          const avgW = h["Avg Weight (%)"] !== undefined ? fmtNum(h["Avg Weight (%)"], 2, "%") : "—";
+          const h = holdingsByPermno[String(r.PERMNO)] || holdingsByPermno[r.TICKER] || {};
+          const rawAvgW = r.avgWeight ?? h["Avg Weight (%)"] ?? h["평균 비중(%)"];
+          const avgW = rawAvgW !== undefined && rawAvgW !== null ? fmtNum(rawAvgW, 2, "%") : "— (비선정)";
+          const bMkt = r.b_mkt ?? r.beta_mkt;
+          const sSmb = r.s_smb ?? r.beta_smb;
+          const hHml = r.h_hml ?? r.beta_hml;
+          const r2Val = r.r2 ?? r.R2;
+          const shVal = r.sharpe ?? r.Sharpe;
+          const rankNum = r.rank || (idx + 1);
           return `
             <tr class="${r.TICKER === "AAPL" ? "highlight-row" : ""}">
-              <td class="num">${idx + 1}</td>
+              <td class="num">${rankNum}</td>
               <td><strong>${r.TICKER}</strong></td>
               <td>${r.COMNAM}</td>
               <td class="num">${r.PERMNO}</td>
               <td class="num pos">${fmtNum(r.t_alpha, 2)}</td>
               <td class="num pos">${fmtNum(parseFloat(r.alpha_ann) * 100, 2, "%")}</td>
-              <td class="num">${fmtNum(r.beta_mkt, 2)}</td>
-              <td class="num">${fmtNum(r.beta_smb, 2)}</td>
-              <td class="num">${fmtNum(r.beta_hml, 2)}</td>
-              <td class="num">${fmtNum(parseFloat(r.R2) * 100, 1, "%")}</td>
-              <td class="num">${fmtNum(r.Sharpe, 2)}</td>
+              <td class="num">${fmtNum(bMkt, 2)}</td>
+              <td class="num">${fmtNum(sSmb, 2)}</td>
+              <td class="num">${fmtNum(hHml, 2)}</td>
+              <td class="num">${fmtNum(parseFloat(r2Val) * 100, 1, "%")}</td>
+              <td class="num">${fmtNum(shVal, 2)}</td>
               <td class="num"><strong>${avgW}</strong></td>
             </tr>
           `;
@@ -517,8 +545,19 @@
       renderFF3();
       const searchInput = document.getElementById("ff3SearchInput");
       if (searchInput) {
-        searchInput.addEventListener("input", (e) => renderFF3(e.target.value));
+        searchInput.addEventListener("input", (e) => {
+          currentQuery = e.target.value;
+          renderFF3();
+        });
       }
+      document.querySelectorAll(".ff3-scope-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".ff3-scope-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentScope = btn.dataset.scope || "top20";
+          renderFF3();
+        });
+      });
     }
 
     // B. 40 Combinations Heatmap Explorer (Results Page)
@@ -530,7 +569,7 @@
         const unit = metric === "sharpe" ? "" : "%";
 
         comboTableBody.innerHTML = source.map((row) => {
-          const modelName = row.H1;
+          const modelName = row.model || row.H1;
           const cells = methods.map((m) => {
             const val = parseFloat(row[m]);
             let badgeClass = "";
@@ -562,19 +601,32 @@
     // C. Holdings Summary Table (Results Page)
     const holdingsBody = document.getElementById("holdingsTableBody");
     if (holdingsBody && data.holdingsSummary) {
-      holdingsBody.innerHTML = data.holdingsSummary.map((r, i) => `
-        <tr class="${r.H1 === "AAPL" ? "highlight-row" : ""}">
-          <td class="num">${i + 1}</td>
-          <td><strong>${r.H1}</strong></td>
-          <td>${r.Company}</td>
-          <td class="num"><strong>${fmtNum(r["Avg Weight (%)"], 2, "%")}</strong></td>
-          <td class="num">${fmtNum(r["Std Weight (%)"], 2, "%")}</td>
-          <td class="num">${fmtNum(r["Min Weight (%)"], 2, "%")}</td>
-          <td class="num">${fmtNum(r["Max Weight (%)"], 2, "%")}</td>
-          <td class="num">${fmtNum(r["Months Held (>0.1%)"], 0)} / 120</td>
-          <td class="num">${fmtNum(r["Months at Cap (20%)"], 0)} (${fmtNum((parseFloat(r["Months at Cap (20%)"]) / 120) * 100, 1, "%")})</td>
-        </tr>
-      `).join("");
+      holdingsBody.innerHTML = data.holdingsSummary.map((r, i) => {
+        const tickerLabel = r.ticker ? `${r.ticker} <span style="font-size:0.78rem;color:var(--text-muted);">(${r.permno})</span>` : r.H1;
+        const avgW = r["Avg Weight (%)"] ?? r["평균 비중(%)"];
+        const stdW = r["Std Weight (%)"];
+        const minW = r["Min Weight (%)"];
+        const maxW = r["Max Weight (%)"];
+        const mHeld = r["Months Held (>0.1%)"];
+        const pctHeld = r["보유 개월 비율(%)"];
+        const mCap = r["Months at Cap (20%)"];
+        const pctCap = r["20% 상한 도달 비율(%)"];
+        const isAAPL = String(r.H1).startsWith("AAPL");
+
+        return `
+          <tr class="${isAAPL ? "highlight-row" : ""}">
+            <td class="num">${i + 1}</td>
+            <td><strong>${tickerLabel}</strong></td>
+            <td>${r.Company || "—"}</td>
+            <td class="num"><strong>${fmtNum(avgW, 2, "%")}</strong></td>
+            <td class="num">${fmtNum(stdW, 2, "%")}</td>
+            <td class="num">${fmtNum(minW, 2, "%")}</td>
+            <td class="num">${fmtNum(maxW, 2, "%")}</td>
+            <td class="num">${mHeld !== undefined ? `${mHeld} / 120 (${fmtNum(pctHeld, 1, "%")})` : fmtNum(pctHeld, 1, "%")}</td>
+            <td class="num">${mCap !== undefined ? `${mCap} / 120 (${fmtNum(pctCap, 1, "%")})` : fmtNum(pctCap, 1, "%")}</td>
+          </tr>
+        `;
+      }).join("");
     }
 
     // D. Multiple Testing 40 Combos Table (QA Page)
@@ -666,6 +718,7 @@
           { left: "$", right: "$", display: false },
           { left: "\\(", right: "\\)", display: false }
         ],
+        ignoredClasses: ["currency"],
         throwOnError: false
       });
     }

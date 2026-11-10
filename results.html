@@ -82,7 +82,7 @@
           <div class="callout-title">📌 이원 분산분석 (2-Way ANOVA) 핵심 발견: 뷰 구조($P$)가 성과의 85.3%를 결정한다</div>
           <p>
             40개 조합의 Net CAGR 분산을 분해한 결과, <strong>뷰 행렬 구성 방식($P$)이 전체 분산의 85.3%</strong>를 설명하며, ML 모델 종류는 <strong>4.5%</strong>, 모델×뷰 상호작용이 <strong>10.2%</strong>를 설명합니다.<br />
-            • <strong><code>M4_Identity</code> ($P=I_{20}$)의 압도적 우위:</strong> 5개 ML 모델 모두 M4와 결합할 때 최고 성과를 기록했습니다 (XGBoost <strong>19.68%</strong>, Elastic Net <strong>19.46%</strong>, RandomForest <strong>18.89%</strong>, Transformer <strong>17.16%</strong>, ANN <strong>16.05%</strong>). 20개 종목에 대한 개별 예측치를 손실 없이 20개의 독립 절대 뷰로 주입하기 때문입니다.<br />
+            • <strong><code>M4_Identity</code> ($P=I_{20}$)의 압도적 우위:</strong> 5개 ML 모델 모두 M4와 결합할 때 최고 성과를 기록했습니다 (XGBoost <strong>19.68%</strong>, Elastic Net <strong>19.46%</strong>, RandomForest <strong>18.85%</strong>, Transformer <strong>17.40%</strong>, ANN <strong>15.07%</strong>). 20개 종목에 대한 개별 예측치를 손실 없이 20개의 독립 절대 뷰로 주입하기 때문입니다.<br />
             • <strong>팩터 상대 뷰(M1~M3) 및 단일 비례 뷰(M5)의 한계:</strong> 20차원 예측 벡터를 단 1~2개의 롱숏 포트폴리오 수익률($K=1,2$)로 집약하면 자유도 손실로 인해 사후 기대수익률 $\mu_{BL}$이 시총 균형 사전분포($\Pi$, CAGR 13.90%) 근방인 13.4%~14.5%에 머물게 됩니다.<br />
             • <strong>롤링 vs 고정 팩터 로딩:</strong> M1~M3 내에서는 36개월 롤링 로딩이 2000–2010 고정 로딩보다 일관되게 약 +0.3~+0.6%p 높은 CAGR과 낮은 턴오버를 달성하여, 시간에 따라 변하는 기업의 규모·가치 특성을 반영하는 것이 유리함을 보여줍니다.
           </p>
@@ -147,103 +147,103 @@
             <tbody>
               <tr>
                 <td><strong>2011</strong></td>
-                <td class="num pos">+12.56%</td>
-                <td class="num">+14.54%</td>
+                <td class="num pos">+6.98%</td>
+                <td class="num">+7.60%</td>
                 <td class="num">+2.11%</td>
                 <td class="num">+7.07%</td>
-                <td class="num pos">+10.45%p</td>
-                <td class="num pos">+5.49%p</td>
-                <td>미국 신용등급 강등 및 유럽 재정위기 속 방어·성장주 선방</td>
+                <td class="num pos">+4.87%p</td>
+                <td class="num neg">-0.09%p</td>
+                <td>미국 신용등급 강등 및 유럽 재정위기 속 방어·우량주 선방 (연간 턴오버 290.2%)</td>
               </tr>
               <tr>
                 <td><strong>2012</strong></td>
-                <td class="num pos">+20.76%</td>
-                <td class="num">+22.90%</td>
+                <td class="num pos">+19.26%</td>
+                <td class="num">+19.72%</td>
                 <td class="num">+16.00%</td>
                 <td class="num">+14.35%</td>
-                <td class="num pos">+4.76%p</td>
-                <td class="num pos">+6.41%p</td>
-                <td>QE3 유동성 장세, AAPL·MNST·PCP 강세 포착</td>
+                <td class="num pos">+3.26%p</td>
+                <td class="num pos">+4.91%p</td>
+                <td>QE3 유동성 장세, AAPL·CNI·PCP 강세 포착 (연간 턴오버 190.1%)</td>
               </tr>
               <tr>
                 <td><strong>2013</strong></td>
-                <td class="num">+26.40%</td>
-                <td class="num">+27.60%</td>
+                <td class="num">+31.18%</td>
+                <td class="num">+32.98%</td>
                 <td class="num">+32.39%</td>
                 <td class="num">+32.24%</td>
-                <td class="num neg">-5.99%p</td>
-                <td class="num neg">-5.84%p</td>
-                <td>광범위한 중소형주 급등장 (AAPL 일시 조정으로 지수 소폭 하회)</td>
+                <td class="num neg">-1.21%p</td>
+                <td class="num neg">-1.06%p</td>
+                <td>광범위한 강세장 속 Gross(+32.98%)는 지수 상회, 리밸런싱 비용 후 소폭 하회 (턴오버 684.0%)</td>
               </tr>
               <tr>
                 <td><strong>2014</strong></td>
-                <td class="num pos">+22.71%</td>
-                <td class="num">+24.16%</td>
+                <td class="num pos">+24.67%</td>
+                <td class="num">+26.71%</td>
                 <td class="num">+13.69%</td>
                 <td class="num">+13.54%</td>
-                <td class="num pos">+9.02%p</td>
-                <td class="num pos">+9.17%p</td>
-                <td>하반기 국제유가 급락 시 에너지주(OXY, SWN) 비중 축소 및 AAPL·APH 집중</td>
+                <td class="num pos">+10.98%p</td>
+                <td class="num pos">+11.13%p</td>
+                <td>하반기 국제유가 급락 시 에너지주 비중 축소 및 AAPL·UGI 집중 (턴오버 810.5%)</td>
               </tr>
               <tr>
                 <td><strong>2015</strong></td>
-                <td class="num neg">-8.13%</td>
-                <td class="num neg">-6.91%</td>
+                <td class="num neg">-14.65%</td>
+                <td class="num neg">-14.18%</td>
                 <td class="num">+1.38%</td>
                 <td class="num neg">-15.18%</td>
-                <td class="num neg">-9.51%p</td>
-                <td class="num pos">+7.05%p</td>
-                <td>원자재·에너지 폭락으로 유니버스(EW20 -15.2%) 전반 부진, ML 뷰로 낙폭 절반 방어</td>
+                <td class="num neg">-16.03%p</td>
+                <td class="num pos">+0.53%p</td>
+                <td>원자재·에너지 폭락으로 선정 유니버스(EW20 -15.18%) 전반 조정 (턴오버 276.8%)</td>
               </tr>
               <tr>
                 <td><strong>2016</strong></td>
-                <td class="num pos">+19.62%</td>
-                <td class="num">+21.17%</td>
+                <td class="num pos">+30.27%</td>
+                <td class="num">+31.13%</td>
                 <td class="num">+11.96%</td>
                 <td class="num">+19.13%</td>
-                <td class="num pos">+7.66%p</td>
-                <td class="num pos">+0.49%p</td>
-                <td>PCP·GMCR·STR 인수 상장폐지 현금 회수 및 산업재(CMI, CNI) 반등</td>
+                <td class="num pos">+18.31%p</td>
+                <td class="num pos">+11.14%p</td>
+                <td>PCP·GMCR·STR 인수 상장폐지 현금 회수 및 산업재(CMI, CNI) 급반등 (턴오버 330.5%)</td>
               </tr>
               <tr>
                 <td><strong>2017</strong></td>
-                <td class="num pos">+36.50%</td>
-                <td class="num">+37.65%</td>
+                <td class="num pos">+32.86%</td>
+                <td class="num">+35.27%</td>
                 <td class="num">+21.83%</td>
                 <td class="num">+22.79%</td>
-                <td class="num pos">+14.67%p</td>
-                <td class="num pos">+13.71%p</td>
-                <td>글로벌 동반 성장기, AAPL·ANSS·DECK·CMI 20% 상한 배분 적중</td>
+                <td class="num pos">+11.03%p</td>
+                <td class="num pos">+10.07%p</td>
+                <td>글로벌 동반 성장기, AAPL·ANSS·CMI 상한 배분 적중 (턴오버 900.5%)</td>
               </tr>
               <tr>
                 <td><strong>2018</strong></td>
-                <td class="num neg">-6.45%</td>
-                <td class="num neg">-5.30%</td>
+                <td class="num neg">-11.37%</td>
+                <td class="num neg">-10.79%</td>
                 <td class="num neg">-4.38%</td>
                 <td class="num neg">-9.62%</td>
-                <td class="num neg">-2.07%p</td>
-                <td class="num pos">+3.17%p</td>
-                <td>미·중 무역분쟁 및 4분기 연준 금리인상 발 기술주 조정, PX 상장폐지</td>
+                <td class="num neg">-6.98%p</td>
+                <td class="num neg">-1.75%p</td>
+                <td>미·중 무역분쟁 및 4분기 연준 금리인상 발 기술·산업주 조정, PX 상장폐지 (턴오버 321.7%)</td>
               </tr>
               <tr>
                 <td><strong>2019</strong></td>
-                <td class="num pos">+43.09%</td>
-                <td class="num">+44.11%</td>
+                <td class="num pos">+51.66%</td>
+                <td class="num">+52.06%</td>
                 <td class="num">+31.49%</td>
                 <td class="num">+27.07%</td>
-                <td class="num pos">+11.60%p</td>
-                <td class="num pos">+16.02%p</td>
-                <td>연준 완화 전환, AAPL·APH·CNI·UGI 집중 보유로 압도적 초과수익</td>
+                <td class="num pos">+20.18%p</td>
+                <td class="num pos">+24.59%p</td>
+                <td>연준 완화 전환, AAPL·ANSS·CNI 집중 보유 및 낮은 턴오버(129.4%)로 압도적 초과수익</td>
               </tr>
               <tr>
                 <td><strong>2020</strong></td>
-                <td class="num pos">+42.90%</td>
-                <td class="num">+44.41%</td>
+                <td class="num pos">+45.57%</td>
+                <td class="num">+47.83%</td>
                 <td class="num">+18.40%</td>
                 <td class="num">+29.84%</td>
-                <td class="num pos">+24.50%p</td>
-                <td class="num pos">+13.06%p</td>
-                <td>코로나19 1분기 충격 방어(-12.7% vs S&amp;P -19.6%) 후 빅테크·소프트웨어(AAPL, ANSS) 급반등</td>
+                <td class="num pos">+27.17%p</td>
+                <td class="num pos">+15.73%p</td>
+                <td>코로나19 1분기 충격 방어(-14.95% vs S&amp;P -19.60%) 후 빅테크·SW 급반등 (턴오버 770.4%)</td>
               </tr>
             </tbody>
           </table>
@@ -255,7 +255,7 @@
           <img src="assets/img/fig3_cumulative_drawdown.png" alt="Figure 3: 누적 포트폴리오 가치 및 낙폭 곡선" class="zoomable-img" />
         </div>
         <div class="figure-caption">
-          <span><strong>Figure 3. 보고서 원본 누적 가치 및 낙폭(Drawdown) 차트 (2011–2020):</strong> (a) $100 초기 투자 시 Main Net($603), Main Gross($663), S&amp;P 500 TR($367), Equal-Weight 20($340) 비교, (b) 전고점 대비 낙폭 추이.</span>
+          <span><strong>Figure 3. 보고서 원본 누적 가치 및 낙폭(Drawdown) 차트 (2011–2020):</strong> (a) <span class="currency">$</span>100 초기 투자 시 Main Net(<span class="currency">$</span>603.09), Main Gross(<span class="currency">$</span>662.54), S&amp;P 500 TR(<span class="currency">$</span>367.00), Equal-Weight 20(<span class="currency">$</span>340.11) 비교, (b) 전고점 대비 낙폭 추이.</span>
           <span class="badge badge-gray">Click to Zoom</span>
         </div>
       </div>
@@ -284,52 +284,52 @@
                   <th class="num">Main 연율수익</th>
                   <th class="num">S&amp;P 500 연율</th>
                   <th class="num">EW 20 연율</th>
-                  <th class="num">Main Sharpe</th>
-                  <th class="num">월 승률 (vs S&amp;P)</th>
+                  <th class="num">vs S&amp;P 500</th>
+                  <th class="num">vs EW 20</th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="highlight-row">
-                  <td><strong>강세장 (Bull)</strong></td>
+                  <td><strong>상승장 (Bull)</strong></td>
                   <td class="num">78개월</td>
-                  <td class="num pos"><strong>+25.55%</strong></td>
-                  <td class="num">+19.63%</td>
-                  <td class="num">+16.41%</td>
-                  <td class="num pos">1.89</td>
-                  <td class="num">59.0%</td>
+                  <td class="num pos"><strong>+27.03%</strong></td>
+                  <td class="num">+19.95%</td>
+                  <td class="num">+20.24%</td>
+                  <td class="num pos">+7.08%p</td>
+                  <td class="num pos">+6.79%p</td>
                 </tr>
                 <tr>
                   <td><strong>회복장 (Recovery)</strong></td>
                   <td class="num">13개월</td>
-                  <td class="num pos"><strong>+52.71%</strong></td>
-                  <td class="num">+38.13%</td>
-                  <td class="num">+52.66%</td>
-                  <td class="num pos">3.12</td>
-                  <td class="num">69.2%</td>
+                  <td class="num pos"><strong>+105.06%</strong></td>
+                  <td class="num">+75.15%</td>
+                  <td class="num">+89.07%</td>
+                  <td class="num pos">+29.91%p</td>
+                  <td class="num pos">+15.99%p</td>
                 </tr>
                 <tr>
                   <td><strong>횡보·조정장 (Sideways)</strong></td>
                   <td class="num">18개월</td>
-                  <td class="num neg">-3.70%</td>
-                  <td class="num">+1.30%</td>
-                  <td class="num neg">-11.98%</td>
-                  <td class="num">-0.25</td>
-                  <td class="num">44.4%</td>
+                  <td class="num neg">-1.60%</td>
+                  <td class="num">+3.49%</td>
+                  <td class="num neg">-2.85%</td>
+                  <td class="num neg">-5.09%p</td>
+                  <td class="num pos">+1.25%p</td>
                 </tr>
                 <tr>
                   <td><strong>위기·급락장 (Crisis)</strong></td>
                   <td class="num">11개월</td>
-                  <td class="num neg"><strong>-21.37%</strong></td>
-                  <td class="num neg">-24.51%</td>
-                  <td class="num neg">-22.25%</td>
-                  <td class="num">-1.06</td>
-                  <td class="num">54.5%</td>
+                  <td class="num neg"><strong>-42.79%</strong></td>
+                  <td class="num neg">-44.57%</td>
+                  <td class="num neg">-49.18%</td>
+                  <td class="num pos">+1.78%p</td>
+                  <td class="num pos">+6.39%p</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.85rem;">
-            💡 <strong>핵심 시사점:</strong> 메인 전략은 강세장(+5.92%p)과 회복장(+14.58%p)에서 S&amp;P 500을 크게 앞지를 뿐 아니라, 위기 국면(11개월)에서도 S&amp;P 500(-24.51%)보다 손실 폭이 적은 <strong>-21.37%</strong>(+3.14%p 방어)를 기록했습니다. 2015–16년 원자재 침체가 포함된 횡보장(18개월)에서는 EW20이 -11.98% 추락할 때 -3.70%로 손실을 억제했습니다.
+            💡 <strong>핵심 시사점:</strong> 메인 전략은 상승장(+7.08%p)과 회복장(+29.91%p)에서 S&amp;P 500을 크게 앞지를 뿐 아니라, 위기 국면(11개월)에서도 S&amp;P 500(-44.57%) 및 EW20(-49.18%)보다 손실 폭이 적은 <strong>-42.79%</strong>(+1.78%p 방어)를 기록했습니다. 2015–16년 원자재 침체가 포함된 횡보장(18개월)에서도 EW20(-2.85%) 대비 +1.25%p 우위를 보였습니다.
           </p>
         </div>
 
@@ -351,60 +351,60 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>2011 미 신용등급 강등</strong> (11.05–11.09, 5m)</td>
+                  <td><strong>2011 유럽 재정위기</strong> (11.05–11.09, 5m)</td>
                   <td><span class="badge badge-red">Crisis</span></td>
-                  <td class="num pos">-5.58%</td>
-                  <td class="num neg">-16.26%</td>
-                  <td class="num neg">-16.92%</td>
-                  <td class="num pos">+10.68%p</td>
+                  <td class="num neg">-17.64%</td>
+                  <td class="num neg">-15.42%</td>
+                  <td class="num neg">-15.32%</td>
+                  <td class="num neg">-2.22%p</td>
                 </tr>
                 <tr>
-                  <td><strong>2012–14 QE 유동성 랠리</strong> (12.01–14.12, 36m)</td>
-                  <td><span class="badge badge-green">Bull</span></td>
-                  <td class="num pos">+87.30%</td>
-                  <td class="num">+74.60%</td>
-                  <td class="num">+71.68%</td>
-                  <td class="num pos">+12.70%p</td>
+                  <td><strong>2011 유럽 재정위기 이후 회복</strong> (11.10–12.03, 6m)</td>
+                  <td><span class="badge badge-blue">Recovery</span></td>
+                  <td class="num pos">+30.86%</td>
+                  <td class="num">+25.88%</td>
+                  <td class="num">+26.86%</td>
+                  <td class="num pos">+4.98%p</td>
                 </tr>
                 <tr>
-                  <td><strong>2015–16 중국·유가 쇼크</strong> (15.06–16.02, 9m)</td>
+                  <td><strong>중국 쇼크·유가 횡보</strong> (15.01–16.02, 14m)</td>
                   <td><span class="badge badge-amber">Sideways</span></td>
-                  <td class="num neg">-6.65%</td>
-                  <td class="num neg">-6.59%</td>
-                  <td class="num neg">-12.75%</td>
-                  <td class="num">-0.06%p</td>
+                  <td class="num neg">-13.68%</td>
+                  <td class="num neg">-4.43%</td>
+                  <td class="num neg">-15.51%</td>
+                  <td class="num neg">-9.25%p</td>
                 </tr>
                 <tr>
-                  <td><strong>2016–17 트럼프·감세 랠리</strong> (16.03–17.12, 22m)</td>
-                  <td><span class="badge badge-green">Bull</span></td>
-                  <td class="num pos">+60.96%</td>
-                  <td class="num">+43.03%</td>
-                  <td class="num">+51.83%</td>
-                  <td class="num pos">+17.93%p</td>
-                </tr>
-                <tr>
-                  <td><strong>2018 Q4 연준 긴축 급락</strong> (18.10–18.12, 3m)</td>
+                  <td><strong>2018 4분기 급락</strong> (18.10–18.12, 3m)</td>
                   <td><span class="badge badge-red">Crisis</span></td>
-                  <td class="num neg">-14.70%</td>
+                  <td class="num neg">-17.07%</td>
                   <td class="num neg">-13.52%</td>
                   <td class="num neg">-13.09%</td>
-                  <td class="num neg">-1.18%p</td>
+                  <td class="num neg">-3.55%p</td>
                 </tr>
                 <tr>
-                  <td><strong>2020 Q1 코로나19 팬데믹 쇼크</strong> (20.01–20.03, 3m)</td>
+                  <td><strong>2018 4분기 급락 이후 회복</strong> (19.01–19.04, 4m)</td>
+                  <td><span class="badge badge-blue">Recovery</span></td>
+                  <td class="num pos">+22.25%</td>
+                  <td class="num">+18.25%</td>
+                  <td class="num">+18.76%</td>
+                  <td class="num pos">+4.00%p</td>
+                </tr>
+                <tr>
+                  <td><strong>코로나19 위기</strong> (20.01–20.03, 3m)</td>
                   <td><span class="badge badge-red">Crisis</span></td>
-                  <td class="num pos">-12.69%</td>
+                  <td class="num pos">-14.95%</td>
                   <td class="num neg">-19.60%</td>
                   <td class="num neg">-17.87%</td>
-                  <td class="num pos">+6.91%p</td>
+                  <td class="num pos">+4.65%p</td>
                 </tr>
                 <tr>
-                  <td><strong>2020 Q2–Q4 코로나 V자 반등</strong> (20.04–20.12, 9m)</td>
+                  <td><strong>코로나19 이후 회복</strong> (20.04–20.06, 3m)</td>
                   <td><span class="badge badge-blue">Recovery</span></td>
-                  <td class="num pos">+63.67%</td>
-                  <td class="num">+47.26%</td>
-                  <td class="num">+58.09%</td>
-                  <td class="num pos">+16.41%p</td>
+                  <td class="num pos">+32.78%</td>
+                  <td class="num">+20.54%</td>
+                  <td class="num">+24.66%</td>
+                  <td class="num pos">+12.24%p</td>
                 </tr>
               </tbody>
             </table>
@@ -449,7 +449,7 @@
         <div class="card-header">
           <div>
             <div class="card-title">20개 선정 종목 전체 보유 비중 통계 요약 (2011–2020, 120개월)</div>
-            <div class="card-subtitle">평균 비중 내림차순 정렬 · AAPL(17.89%), CNI(12.08%), UGI(10.78%), CMI(8.16%), ANSS(7.35%) 등 다양한 산업군에 분산</div>
+            <div class="card-subtitle">평균 비중 내림차순 정렬 · AAPL(17.89%), CNI(8.31%), UGI(8.29%), CMI(7.28%), ANSS(7.03%), SRCL(7.00%) 등 다양한 산업군에 분산</div>
           </div>
         </div>
         <div class="table-wrap">
@@ -509,26 +509,26 @@
                   <td class="num">39.20%</td>
                 </tr>
                 <tr>
-                  <td>Fixed $\Sigma$ (2008–2010 초기 공분산 행렬 고정)</td>
-                  <td class="num">13.40%</td>
-                  <td class="num">15.95%</td>
-                  <td class="num">0.83</td>
-                  <td class="num">-22.58%</td>
-                  <td class="num">11.09%</td>
+                  <td>Fixed $\Sigma$ (초기 36개월 공분산 행렬 고정)</td>
+                  <td class="num pos">20.20%</td>
+                  <td class="num">16.15%</td>
+                  <td class="num pos">1.17</td>
+                  <td class="num">-19.52%</td>
+                  <td class="num">35.67%</td>
                 </tr>
                 <tr>
-                  <td>Fixed Weights (2010.12 첫 달 최적비중 Buy &amp; Hold)</td>
-                  <td class="num">14.47%</td>
-                  <td class="num">15.90%</td>
-                  <td class="num">0.89</td>
-                  <td class="num">-23.51%</td>
-                  <td class="num">0.00%</td>
+                  <td>Fixed Weights (2010.12 첫 달 최적비중 고정)</td>
+                  <td class="num">16.07%</td>
+                  <td class="num">15.12%</td>
+                  <td class="num">1.01</td>
+                  <td class="num">-16.25%</td>
+                  <td class="num">0.83%</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p style="font-size: 0.86rem; color: var(--text-secondary); margin-top: 0.85rem;">
-            🔍 <strong>해석:</strong> 공분산 행렬 $\Sigma$를 2010년 말 시점에 고정하면 변화하는 시장 위험 구조와 시총 균형수익률 $\Pi_t = \delta\Sigma_t w_{mkt,t}$를 반영하지 못해 CAGR이 <strong>13.40%</strong>(-6.28%p)로 급락합니다. 또한 첫 달 비중을 고정(Buy &amp; Hold)하면 <strong>14.47%</strong>(-5.21%p)에 그쳐, 매월 ML 뷰와 공분산을 갱신하는 동적 리밸런싱이 거래비용(연 1.13%p)을 상쇄하고도 <strong>연 +5.21%p의 순부가가치</strong>를 창출함을 입증합니다.
+            🔍 <strong>해석:</strong> 첫 달(2010.12) 비중을 10년간 고정할 경우 CAGR은 <strong>16.07%</strong>(Sharpe 1.01)에 머무는 반면, 매월 ML 뷰를 갱신하여 리밸런싱하는 메인 전략은 거래비용(연 1.13%p)을 차감하고도 <strong>19.68%</strong>(<strong>+3.61%p 순부가가치</strong>)를 달성합니다. 한편 공분산 $\Sigma$를 초기 구간에 고정해도 ML 뷰가 살아 있으면 <strong>20.20%</strong>를 기록하여, 성과의 핵심 동력이 공분산 시변성보다 <strong>월별 ML 예측 뷰($Q_t$)의 시변 갱신</strong>에 있음을 확증합니다.
           </p>
         </div>
 
@@ -550,20 +550,20 @@
               </thead>
               <tbody>
                 <tr>
+                  <td>$\delta = 1.50$ (적극적 위험감수 · ML 뷰 가중 확대)</td>
+                  <td class="num pos">21.23%</td>
+                  <td class="num">17.59%</td>
+                  <td class="num pos">1.14</td>
+                  <td class="num">-19.51%</td>
+                  <td class="num">46.50%</td>
+                </tr>
+                <tr>
                   <td>$\delta = 2.09$ (1926–2010 장기 시장 내재 $\delta$)</td>
                   <td class="num pos">21.14%</td>
                   <td class="num">17.13%</td>
                   <td class="num pos">1.17</td>
                   <td class="num">-18.78%</td>
                   <td class="num">43.84%</td>
-                </tr>
-                <tr>
-                  <td>$\delta = 2.50$ (낮은 위험회피 · 적극적 뷰 반영)</td>
-                  <td class="num pos">20.40%</td>
-                  <td class="num">16.32%</td>
-                  <td class="num pos">1.18</td>
-                  <td class="num">-19.44%</td>
-                  <td class="num">41.36%</td>
                 </tr>
                 <tr class="highlight-row">
                   <td><strong>$\delta = 3.00$, $\tau = 0.10$ (Main Baseline)</strong></td>
@@ -574,6 +574,14 @@
                   <td class="num">39.20%</td>
                 </tr>
                 <tr>
+                  <td>$\delta = 6.00$ (보수적 위험회피 · 사전분포 비중 확대)</td>
+                  <td class="num">16.92%</td>
+                  <td class="num">14.70%</td>
+                  <td class="num">1.09</td>
+                  <td class="num">-19.62%</td>
+                  <td class="num">30.86%</td>
+                </tr>
+                <tr>
                   <td>$\delta = 8.84$ (20종목 표본 내 편향 추정치)</td>
                   <td class="num">13.77%</td>
                   <td class="num">15.32%</td>
@@ -582,28 +590,28 @@
                   <td class="num">20.38%</td>
                 </tr>
                 <tr>
-                  <td>$\delta = 10.0$ (극단적 위험회피 · 사전분포 지배)</td>
-                  <td class="num">13.27%</td>
-                  <td class="num">15.33%</td>
-                  <td class="num">0.84</td>
-                  <td class="num">-21.81%</td>
-                  <td class="num">18.23%</td>
+                  <td>$\tau = 0.025$ ($\mu_{BL}$ 불변, $\Sigma_{BL}$ 스케일 변화)</td>
+                  <td class="num pos">19.72%</td>
+                  <td class="num">16.18%</td>
+                  <td class="num pos">1.15</td>
+                  <td class="num">-19.51%</td>
+                  <td class="num">40.48%</td>
                 </tr>
                 <tr>
                   <td>$\tau = 0.05$ ($\mu_{BL}$ 불변, $\Sigma_{BL}$ 스케일 변화)</td>
                   <td class="num pos">19.72%</td>
-                  <td class="num">16.15%</td>
+                  <td class="num">16.16%</td>
                   <td class="num pos">1.15</td>
-                  <td class="num">-19.53%</td>
-                  <td class="num">39.96%</td>
+                  <td class="num">-19.52%</td>
+                  <td class="num">40.04%</td>
                 </tr>
                 <tr>
                   <td>$\tau = 0.20$ ($\mu_{BL}$ 불변, $\Sigma_{BL}$ 스케일 변화)</td>
                   <td class="num pos">19.61%</td>
-                  <td class="num">16.05%</td>
+                  <td class="num">16.02%</td>
                   <td class="num pos">1.15</td>
-                  <td class="num">-19.59%</td>
-                  <td class="num">37.82%</td>
+                  <td class="num">-19.60%</td>
+                  <td class="num">37.65%</td>
                 </tr>
                 <tr>
                   <td>Equal-Weight Prior ($\Pi_{EW} = \delta\Sigma w_{ew}+r_f$)</td>

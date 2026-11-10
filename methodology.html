@@ -198,9 +198,15 @@
         <div class="controls-bar">
           <div>
             <div class="card-title">선정된 20개 종목 FF3 회귀 계수 및 백테스트 평균 비중 (2000–2010 추정)</div>
-            <div class="card-subtitle">티커, 기업명 또는 PERMNO로 검색할 수 있습니다. (HANS→MNST, POT→NTR 티커 변경 포함)</div>
+            <div class="card-subtitle">티커, 기업명 또는 PERMNO로 검색하거나 게이트를 통과한 전체 131개 종목으로 전환해 볼 수 있습니다. (HANS→MNST, POT→NTR 포함)</div>
           </div>
-          <input type="text" id="ff3SearchInput" class="search-input" placeholder="🔎 티커 또는 기업명 검색 (예: AAPL, railway)..." />
+          <div style="display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center;">
+            <div class="pill-group">
+              <button class="pill-btn ff3-scope-btn active" data-scope="top20">선정 Top 20 종목</button>
+              <button class="pill-btn ff3-scope-btn" data-scope="all131">게이트 통과 131개 전체</button>
+            </div>
+            <input type="text" id="ff3SearchInput" class="search-input" placeholder="🔎 티커 또는 기업명 검색 (예: AAPL, railway)..." />
+          </div>
         </div>
         <div class="table-wrap">
           <table class="data-table">
@@ -358,7 +364,7 @@
                 <td class="num pos">+0.047</td>
                 <td class="num pos">1.98</td>
                 <td class="num">56.7%</td>
-                <td class="num pos"><strong>18.89%</strong></td>
+                <td class="num pos"><strong>18.85%</strong></td>
               </tr>
               <tr>
                 <td><strong>Transformer</strong><br /><span style="font-size:0.78rem;color:var(--text-muted);">김도현 · 나근석</span></td>
@@ -368,7 +374,7 @@
                 <td class="num pos">+0.032</td>
                 <td class="num">1.22</td>
                 <td class="num">60.8%</td>
-                <td class="num">17.16%</td>
+                <td class="num">17.40%</td>
               </tr>
               <tr>
                 <td><strong>ANN (3-Layer MLP)</strong><br /><span style="font-size:0.78rem;color:var(--text-muted);">백상준</span></td>
@@ -378,7 +384,7 @@
                 <td class="num neg">-0.006</td>
                 <td class="num neg">-0.25</td>
                 <td class="num">47.5%</td>
-                <td class="num">16.05%</td>
+                <td class="num">15.07%</td>
               </tr>
             </tbody>
           </table>
